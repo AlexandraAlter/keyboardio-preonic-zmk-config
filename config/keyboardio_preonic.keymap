@@ -11,15 +11,15 @@
 
 // layers
 
-#define L_DV  0
-#define L_LW  1
-#define L_RZ  2
-#define L_GA  3
-#define L_GL  4
-#define L_GR  5
-#define L_MS  6
-#define L_MD  7
-#define L_SY  8
+#define L_DV 0
+#define L_LW 1
+#define L_RZ 2
+#define L_GA 3
+#define L_GL 4
+#define L_GR 5
+#define L_MS 6
+#define L_MD 7
+#define L_SY 8
 
 // convenience macros
 
@@ -28,31 +28,31 @@
 #define KP_MIN KP_MINUS
 #define KP_RET KP_ENTER
 
-#define &lt_lw &lt L_LW
-#define &lt_rz &lt L_RZ
-#define &lt_ms &lt L_MS
-#define &lt_md &lt L_MD
-#define &lt_sy &lt L_SY
+#define .lt_lw &lt L_LW
+#define .lt_rz &lt L_RZ
+#define .lt_ms &lt L_MS
+#define .lt_md &lt L_MD
+#define .lt_sy &lt L_SY
 
-#define &hlg &hml LGUI
-#define &hla &hml LALT
-#define &hlA &hml RALT
-#define &hls &hml LSHIFT
-#define &hlc &hml LCTRL
-#define &hrg &hml RGUI
-#define &hra &hml RALT
-#define &hrA &hml LALT
-#define &hrs &hml RSHIFT
-#define &hrc &hml RCTRL
+#define .hlg &hml LGUI
+#define .hla &hml LALT
+#define .hlA &hml RALT
+#define .hls &hml LSHIFT
+#define .hlc &hml LCTRL
+#define .hrg &hml RGUI
+#define .hra &hml RALT
+#define .hrA &hml LALT
+#define .hrs &hml RSHIFT
+#define .hrc &hml RCTRL
 
-#define &mtlg &mt LGUI
-#define &mtla &mt LALT
-#define &mtls &mt LSHIFT
-#define &mtlc &mt LCTRL
-#define &mtrg &mt RGUI
-#define &mtra &mt RALT
-#define &mtrs &mt RSHIFT
-#define &mtrc &mt RCTRL
+#define .mtlg &mt LGUI
+#define .mtla &mt LALT
+#define .mtls &mt LSHIFT
+#define .mtlc &mt LCTRL
+#define .mtrg &mt RGUI
+#define .mtra &mt RALT
+#define .mtrs &mt RSHIFT
+#define .mtrc &mt RCTRL
 
 // behaviour configuration
 
@@ -101,10 +101,10 @@
             bindings = <
                                                                                                              &kp C_PP    &kp C_NEXT  &kp C_MUTE
  &kp F1     &kp F2      &kp F3      &kp F4      &kp F5      &kp F6      &kp F7      &kp F8      &kp F9       &kp F10     &kp F11     &kp F12
- &mtlg ESC  &kp APOS    &hlA        &kp         &kp P       &kp Y       &kp F       &kp G       &kp C        &kp R       &kp L       &mtrg TAB
- &mtlc BSPC &hlg A      &hla O      &hls E      &hlc U      &kp I       &kp D       &kp H       &kp T        &kp N       &kp S       &mtrc DEL
- &mtls TAB  &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &kp B       &kp M       &kp W        &kp V       &kp Z       &mtrs ENTER
- &kp HYPER  &kp LCTRL   &mtlg LALT  &mtla LGUI  &lt_lw LBKT       &lt_ms SPACE      &lt_rz RBKT &mtra LEFT   &mtrg DOWN  &kp UP      &kp RIGHT >;
+ .mtlg ESC  &kp APOS    .hlA        &kp         &kp P       &kp Y       &kp F       &kp G       &kp C        &kp R       &kp L       .mtrg TAB
+ .mtlc BSPC .hlg A      .hla O      .hls E      .hlc U      &kp I       &kp D       &kp H       &kp T        &kp N       &kp S       .mtrc DEL
+ .mtls TAB  &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &kp B       &kp M       &kp W        &kp V       &kp Z       .mtrs ENTER
+ &kp HYPER  &kp LCTRL   .mtlg LALT  .mtla LGUI  .lt_lw LBKT       .lt_ms SPACE      .lt_rz RBKT .mtra LEFT   .mtrg DOWN  &kp UP      &kp RIGHT >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
