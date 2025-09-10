@@ -63,7 +63,6 @@
 
 / {
     chosen {
-        // Valid choices: [ &mit_layout, &ortho_layout ]
         zmk,physical-layout = &mit_layout;
     };
 
@@ -104,7 +103,7 @@
  MTLG ESC   &kp APOS    HLT COMMA   &kp PERIOD  &kp P       &kp Y       &kp F       &kp G       &kp C        &kp R       &kp L       MTRG TAB
  MTLC BSPC  HLG A       HLA O       HLS E       HLC U       &kp I       &kp D       &kp H       &kp T        &kp N       &kp S       MTRC DEL
  MTLS TAB   &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &kp B       &kp M       &kp W        &kp V       &kp Z       MTRS ENTER
- &mo L_SY   &kp LCTRL   MTLG LALT   MTLA LGUI   LT_LW LBKT        LT_MS SPACE       LT_RZ RBKT  MTRA LEFT    MTRG DOWN   &kp UP      &kp RIGHT >;
+ &mo L_SY   &kp LCTRL   MTLG LALT   MTLA LGUI   LT_LW LBKT        LT_MS SPACE       LT_RZ RBKT  MTRA LEFT    MTRG DOWN   &kp UP      &kp RIGHT    &kp SPACE >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
