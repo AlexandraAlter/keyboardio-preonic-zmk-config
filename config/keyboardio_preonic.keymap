@@ -68,10 +68,13 @@
 #define MSC_LT &msc SCRL_LEFT
 #define MSC_RT &msc SCRL_RIGHT
 
+#define BT(n) BT_SEL n
+
 // behaviour configuration
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
+&mt { quick_tap_ms = <200>; };
 
 &mmv {
     time-to-max-speed-ms = <1000>;
@@ -82,8 +85,6 @@
     time-to-max-speed-ms = <300>;
     acceleration-exponent = <0>;
 };
-
-#define BT(n) BT_SEL n
 
 / {
     chosen {
