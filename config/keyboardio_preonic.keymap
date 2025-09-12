@@ -183,9 +183,9 @@
             bindings = <
                                                                                                              &trans      &trans      &trans
  &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans      &trans      &mkp M3     &mkp M4     MMV_UP      &mkp M5     MSC_UP      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &mkp M1     MMV_LT      MMV_DN      MMV_RT      MSC_DN      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &mkp M2     MSC_LT      &none       MSC_RT      &none       &trans
+ &trans      &trans      &trans      &trans      &trans      &trans      &mkp MB3    &mkp MB4    MMV_UP      &mkp MB5    MSC_UP      &trans
+ &trans      &trans      &trans      &trans      &trans      &trans      &mkp MB1    MMV_LT      MMV_DN      MMV_RT      MSC_DN      &trans
+ &trans      &trans      &trans      &trans      &trans      &trans      &mkp MB2    MSC_LT      &none       MSC_RT      &none       &trans
  &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
