@@ -38,11 +38,11 @@
 #define HLT &hml RALT
 #define HLS &hml LSHIFT
 #define HLC &hml LCTRL
-#define HRG &hml RGUI
-#define HRA &hml RALT
-#define HRT &hml LALT
-#define HRS &hml RSHIFT
-#define HRC &hml RCTRL
+#define HRG &hmr RGUI
+#define HRA &hmr RALT
+#define HRT &hmr LALT
+#define HRS &hmr RSHIFT
+#define HRC &hmr RCTRL
 
 #define MTLG &mt LGUI
 #define MTLA &mt LALT
@@ -100,7 +100,7 @@
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = < 3 4 5 6 7 8  15 16 17 18 19 20  27 28 29 30 31 32  39 40 41 42 43 44  55 56 57 58 >;
+            hold-trigger-key-positions = < 0 1 2  9 10 11 12 13 14  21 22 23 24 25 26  33 34 35 36 37 38  45 46 47 48 49 50  55 56 57 58  59 60 61 62>;
             hold-trigger-on-release;
         };
 
@@ -112,7 +112,7 @@
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = < 0 1 2  9 10 11 12 13 14  21 22 23 24 25 26  33 34 35 36 37 38  45 46 47 48 49 50  55 56 57 58  59 60 61 62>;
+            hold-trigger-key-positions = < 3 4 5 6 7 8  15 16 17 18 19 20  27 28 29 30 31 32  39 40 41 42 43 44  55 56 57 58 >;
             hold-trigger-on-release;
         };
     };
