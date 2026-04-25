@@ -145,9 +145,13 @@
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        tri_layer {
+        tri_layer_base {
             if-layers = <L_LW L_RZ>;
             then-layer = <L_AJ>;
+        };
+        tri_layer_gaming {
+            if-layers = <L_GLW L_GRZ>;
+            then-layer = <L_GAJ>;
         };
     };
 
@@ -162,7 +166,7 @@
  MTLG ESC    &kp APOS    HLT COMMA   &kp PERIOD  &kp P       &kp Y       &kp F       &kp G       &kp C       HRT R       &kp L       MTRG TAB
  MTLC BSPC   HLG A       HLA O       HLS E       HLC U       &kp I       &kp D       HRC H       HRS T       HRA N       HRG S       MTRC DEL
  MTLS TAB    &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &kp B       &kp M       &kp W       &kp V       &kp Z       MTRS ENTER
- &mo L_SY    &kp BSLH    MTLG FSLH   MTLA MINUS  LT_LW LBKT        LT_MS SPACE       LT_RZ RBKT  MTRA LEFT   MTRG DOWN   &kp UP     LT_SY RIGHT >;
+ &mo L_SY    &kp BSLH    MTLG FSLH   MTLA MINUS  LT_LW LBKT        LT_MS SPACE       LT_RZ RBKT  MTRA LEFT   MTRG DOWN   &kp UP      LT_SY RIGHT >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -174,7 +178,7 @@
  &trans      &kp APOS    HLT COMMA   &kp PERIOD  &none       &none       &none       &kp N1      &kp N2      HRT N3      &none       &trans
  &trans      HLG GRAVE   HLA MINUS   HLS EQUAL   HLC FSLH    &none       &none       HRC N4      HRS N5      HRA N6      &kp RGUI    &trans
  &trans      &kp SEMI    &kp LBKT    &kp RBKT    &kp BSLH    &none       &none       &kp N7      &kp N8      &kp N9      &kp N0      &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 		};
 
@@ -186,7 +190,7 @@
  &trans      &kp CAPS    HLT HOME    &kp UP      &kp END     &kp PG_UP   &none       &kp F1      &kp F2      HRT F3      &kp F4      &trans
  &trans      HLG INS     HLA LEFT    HLS DOWN    HLC RIGHT   &kp PG_DN   &none       HRC F5      HRS F6      HRA F7      HRG F8      &trans
  &trans      &kp ENTER   &kp BSPC    &none       &kp DEL     &kp K_APP   &none       &kp F9      &kp F10     &kp F11     &kp F12     &trans
- &trans      &trans      &trans      &trans      &trans            &trans            &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans            &trans            &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -198,7 +202,7 @@
  &trans      &kp C_STOP  &kp C_PREV  &kp C_NEXT  &kp C_PP    &none       &none       &kp F13     &kp F14     HRT F15     &kp F16     &trans
  &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &none       &none       HRC F17     HRS F18     HRA F19     HRG F20     &trans
  &trans      &none       &kp C_RW    &kp C_FF    &none       &none       &none       &kp F21     &kp F22     &kp F23     &kp F24     &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -210,7 +214,7 @@
  &trans      &none       &kp RALT    &kp P_BRK   &kp PSCRN   &kp SYSREQ  &mkp MB3    &mkp MB4    MMV_UP      &mkp MB5    MSC_UP      &trans
  &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &kp INS     &mkp MB1    MMV_LT      MMV_DN      MMV_RT      MSC_DN      &trans
  &trans      &none       &kp SLCK    &kp CLCK    &kp KP_NLCK &none       &mkp MB2    MSC_LT      &none       MSC_RT      &none       &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -234,7 +238,7 @@
  &kp LGUI    &kp L       &kp R       &kp C       &kp G       &kp F       &none       &none       &trans      &trans      &trans      &trans
  &trans      &kp A       &kp O       &kp E       &kp U       &kp I       &none       &none       &trans      &trans      &trans      &trans
  &trans      &kp S       &kp N       &kp T       &kp H       &kp D       &none       &none       &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -246,7 +250,7 @@
  &kp LGUI    &kp APOS    &kp COMMA   &kp PERIOD  &kp P       &kp Y       &none       &none       &kp F1      &kp F2      &kp F3      &kp F4
  &trans      &kp Z       &kp V       &kp W       &kp M       &kp B       &none       &none       &kp F5      &kp F6      &kp F7      &kp F8
  &trans      &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &none       &none       &kp F9      &kp F10     &kp F11     &kp F12
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -258,7 +262,7 @@
  &kp LGUI    &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
  &trans      &none       &none       &none       &none       &none       &none       &none       &none       &kp KP_NLCK &none       &none
  &trans      &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -282,7 +286,7 @@
  &trans      &kp APOS    HLT COMMA   &kp PERIOD  &kp P       &kp Y       &none       &none       &none       &none       &none       &none
  &trans      &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &none       &none       &none       &none       &none       &none
  &trans      &kp Z       &kp V       &kp W       &kp M       &kp B       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -294,7 +298,7 @@
  &trans      &none       &sk RALT    &none       &none       &none       &none       &none       &none       &none       &none       &none
  &trans      &sk LGUI    &sk LALT    &sk LSHFT   &sk LCTRL   &none       &none       &none       &none       &none       &none       &none
  &trans      &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -306,7 +310,7 @@
  &trans      &kp APOS    &kp COMMA   &kp PERIOD  &none       &none       &none       &none       &none       &none       &none       &none
  &trans      &kp GRAVE   &kp MINUS   &kp EQUAL   &kp FSLH    &none       &none       &none       &none       &none       &none       &none
  &trans      &kp SEMI    &kp LBKT    &kp RBKT    &kp BSLH    &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -318,7 +322,7 @@
  &trans      &kp CAPS    &kp HOME    &kp UP      &kp END     &kp PG_UP   &none       &none       &none       &none       &none       &none
  &trans      &kp INS     &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN   &none       &none       &none       &none       &none       &none
  &trans      &kp ENTER   &kp BSPC    &none       &kp DEL     &kp K_APP   &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -330,7 +334,7 @@
  &trans      &kp N1      &kp N2      &kp N3      &none       &none       &none       &none       &none       &none       &none       &none
  &trans      &kp N4      &kp N5      &kp N6      &none       &none       &none       &none       &none       &none       &none       &none
  &trans      &kp N7      &kp N8      &kp N9      &kp N0      &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -342,7 +346,7 @@
  &trans      &kp F1      &kp F2      &kp F3      &kp F4      &none       &none       &none       &none       &none       &none       &none
  &trans      &kp F5      &kp F6      &kp F7      &kp F8      &none       &none       &none       &none       &none       &none       &none
  &trans      &kp F9      &kp F10     &kp F11     &kp F12     &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -354,7 +358,7 @@
  &trans      MSC_UP      &mkp MB4    MMV_UP      &mkp MB5    &mkp MB3    &none       &none       &none       &none       &none       &none
  &trans      MSC_DN      MMV_LT      MMV_DN      MMV_RT      &mkp MB1    &none       &none       &none       &none       &none       &none
  &trans      &none       MSC_LT      &none       MSC_RT      &mkp MB2    &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -366,14 +370,14 @@
  O_BLE       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &kp RGUI
  &bt BT_CLR  &to L_GA    &to L_OH    &to L_DV    &none       &none       &none       &none       &none       &none       &none       &kp RCTRL
  O_USB       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &kp RSHFT
- &trans      &trans      &kp LGUI    &kp LALT    &trans           &trans             &trans      &kp RALT    &kp RGUI    &trans      &trans >;
+ &mo L_SY    &trans      &kp LGUI    &kp LALT    &trans           &trans             &trans      &kp RALT    &kp RGUI    &trans      &mo L_SY >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         /* template
                                                                                                              &trans      &trans      &trans
  &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+ &mo L_SY    &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &mo L_SY >;
          */
     };
 };
