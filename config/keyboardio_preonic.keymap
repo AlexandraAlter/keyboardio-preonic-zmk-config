@@ -15,22 +15,42 @@
 
 // layers
 
-#define L_DV 0
-#define L_LW 1
-#define L_RZ 2
-#define L_GA 3
-#define L_GL 4
-#define L_GR 5
-#define L_MS 6
-#define L_MD 7
-#define L_SY 8
+#define L_DV  0  // dvorak layer
+#define L_LW  1  // lower layer
+#define L_RZ  2  // raise layer
+#define L_AJ  3  // adjust layer
+#define L_MS  4  // mouse layer
+#define L_GA  5  // gaming layer
+#define L_GLW 6  // gaming lower layer
+#define L_GRZ 7  // gaming raise layer
+#define L_GAJ 8  // gaming adjust layer
+#define L_OH  9  // one-hand layer
+#define L_OAL 10 // one-hand alternate layer
+#define L_OMD 11 // one-hand modifiers layer
+#define L_OSY 12 // one-hand symbols layer
+#define L_ONV 13 // one-hand navigation layer
+#define L_ONM 14 // one-hand numbers layer
+#define L_OFN 15 // one-hand functions layer
+#define L_OMS 16 // one-hand mouse layer
+#define L_SY  17 // system layer
 
 // convenience macros
 
 #define LT_LW &lt L_LW
 #define LT_RZ &lt L_RZ
 #define LT_MS &lt L_MS
-#define LT_MD &lt L_MD
+#define LT_GA &lt L_GA
+#define LT_GLW &lt L_GLW
+#define LT_GRZ &lt L_GRZ
+#define LT_GAJ &lt L_GAJ
+#define LT_OH &lt L_OH
+#define LT_OAL &lt L_OAL
+#define LT_OMD &lt L_OMD
+#define LT_OSY &lt L_OSY
+#define LT_ONV &lt L_ONV
+#define LT_ONM &lt L_ONM
+#define LT_OFN &lt L_OFN
+#define LT_OMS &lt L_OMS
 #define LT_SY &lt L_SY
 
 #define HLG &hml LGUI
@@ -53,10 +73,13 @@
 #define MTRS &mt RSHIFT
 #define MTRC &mt RCTRL
 
+#define KP_PLS KP_PLUS
+#define KP_MIN KP_MINUS
 #define KP_DIV KP_DIVIDE
 #define KP_MLT KP_MULTIPLY
-#define KP_MIN KP_MINUS
 #define KP_RET KP_ENTER
+
+#define P_BRK PAUSE_BREAK
 
 #define MMV_UP &mmv MOVE_UP
 #define MMV_DN &mmv MOVE_DOWN
@@ -69,6 +92,9 @@
 #define MSC_RT &msc SCRL_RIGHT
 
 #define BT(n) BT_SEL n
+
+#define O_BLE &out OUT_BLE
+#define O_USB &out OUT_USB
 
 // behaviour configuration
 
@@ -117,6 +143,14 @@
         };
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <L_LW L_RZ>;
+            then-layer = <L_AJ>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -128,7 +162,7 @@
  MTLG ESC    &kp APOS    HLT COMMA   &kp PERIOD  &kp P       &kp Y       &kp F       &kp G       &kp C       HRT R       &kp L       MTRG TAB
  MTLC BSPC   HLG A       HLA O       HLS E       HLC U       &kp I       &kp D       HRC H       HRS T       HRA N       HRG S       MTRC DEL
  MTLS TAB    &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &kp B       &kp M       &kp W       &kp V       &kp Z       MTRS ENTER
- &mo L_SY    LT_MD BSLH  MTLG FSLH   MTLA MINUS  LT_LW LBKT        LT_MS SPACE       LT_RZ RBKT  MTRA LEFT   MTRG DOWN   LT_MD UP    LT_SY RIGHT >;
+ &mo L_SY    &kp BSLH    MTLG FSLH   MTLA MINUS  LT_LW LBKT        LT_MS SPACE       LT_RZ RBKT  MTRA LEFT   MTRG DOWN   &kp UP     LT_SY RIGHT >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -142,12 +176,7 @@
  &trans      &kp SEMI    &kp LBKT    &kp RBKT    &kp BSLH    &none       &none       &kp N7      &kp N8      &kp N9      &kp N0      &trans
  &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        raise_layer {
-            label = "raise";
-            bindings = <
-                                                                                                             &trans      &trans      &trans
+&kp N1      &kp N2      HRT N3      &none       &none      &trans
  &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
  &trans      &kp CAPS    HLT HOME    &kp UP      &kp END     &kp PG_UP   &none       &kp F1      &kp F2      HRT F3      &kp F4      &trans
  &trans      HLG INS     HLA LEFT    HLS DOWN    HLC RIGHT   &kp PG_DN   &none       HRC F5      HRS F6      HRA F7      HRG F8      &trans
@@ -156,38 +185,14 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        game_layer {
-            label = "game";
-            bindings = <
-                                                                                                             &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &kp ESC     &kp TAB     &kp HOME    &kp UP      &kp END     &kp PG_UP   &kp GRAVE   &trans      &kp N1      &kp N2      HRT N3      &trans
- &kp LCTL    &kp BSPC    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN   &kp BSLH    &trans      HRC N4      HRS N5      HRA N6      &trans
- &kp LSHFT   &kp DEL     &kp ENTER   &kp MINUS   &kp EQUAL   &kp FSLH    &kp LBKT    &kp RBKT    &kp N7      &kp N8      &kp N9      &kp N0
- &trans      &trans      &trans      &trans      &mo L_GL         &kp SPACE          &mo L_GL    &trans      &trans      &trans      &trans >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        game_lower_layer {
-            label = "game lower";
+        adjust_layer {
+            label = "adjust";
             bindings = <
                                                                                                              &trans      &trans      &trans
  &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        game_raise_layer {
-            label = "game raise";
-            bindings = <
-                                                                                                             &trans      &trans      &trans
- &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
+ &trans      &kp C_STOP  &kp C_PREV  &kp C_NEXT  &kp C_PP    &none       &none       &kp F13     &kp F14     HRT F15     &kp F16     &trans
+ &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &none       &none       HRC F17     HRS F18     HRA F19     HRG F20     &trans
+ &trans      &none       &kp C_RW    &kp C_FF    &none       &none       &none       &kp F21     &kp F22     &kp F23     &kp F24     &trans
  &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -197,21 +202,153 @@
             bindings = <
                                                                                                              &trans      &trans      &trans
  &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &kp RALT    &trans      &trans      &trans      &mkp MB3    &mkp MB4    MMV_UP      &mkp MB5    MSC_UP      &trans
- &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &trans      &mkp MB1    MMV_LT      MMV_DN      MMV_RT      MSC_DN      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &mkp MB2    MSC_LT      &none       MSC_RT      &none       &trans
+ &trans      &none       &kp RALT    &kp P_BRK   &kp PSCRN   &kp SYSREQ  &mkp MB3    &mkp MB4    MMV_UP      &mkp MB5    MSC_UP      &trans
+ &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &kp INS     &mkp MB1    MMV_LT      MMV_DN      MMV_RT      MSC_DN      &trans
+ &trans      &none       &kp SLCK    &kp CLCK    &kp KP_NLCK &none       &mkp MB2    MSC_LT      &none       MSC_RT      &none       &trans
  &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        media_layer {
-            label = "media";
+        game_layer {
+            label = "game";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp KP_MLT  &kp KP_DIV
+ &kp ESC     &kp TAB     &kp HOME    &kp UP      &kp END     &kp PG_UP   &kp GRAVE   &none       &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_MIN
+ &kp LCTL    &kp BSPC    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN   &kp BSLH    &none       &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp KP_PLS
+ &kp LSHFT   &kp DEL     &kp ENTER   &kp MINUS   &kp EQUAL   &kp FSLH    &kp LBKT    &kp RBKT    &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_RET
+ &mo L_SY    &none       &kp LGUI    &kp LALT    &mo L_GLW        &kp SPACE          &mo L_GRZ   &kp KP_N0   &kp KP_N0   &kp KP_DOT  &kp KP_RET >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        game_lower_layer {
+            label = "game lower";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &trans      &trans
+ &kp LGUI    &kp L       &kp R       &kp C       &kp G       &kp F       &none       &none       &trans      &trans      &trans      &trans
+ &trans      &kp A       &kp O       &kp E       &kp U       &kp I       &none       &none       &trans      &trans      &trans      &trans
+ &trans      &kp S       &kp N       &kp T       &kp H       &kp D       &none       &none       &trans      &trans      &trans      &trans
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        game_raise_layer {
+            label = "game raise";
             bindings = <
                                                                                                              &trans      &trans      &trans
  &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
- &trans      &trans      &kp RALT    &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
+ &kp LGUI    &kp APOS    &kp COMMA   &kp PERIOD  &kp P       &kp Y       &none       &none       &kp F1      &kp F2      &kp F3      &kp F4
+ &trans      &kp Z       &kp V       &kp W       &kp M       &kp B       &none       &none       &kp F5      &kp F6      &kp F7      &kp F8
+ &trans      &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &none       &none       &kp F9      &kp F10     &kp F11     &kp F12
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        game_adjust_layer {
+            label = "game adjust";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &kp LGUI    &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &none       &none       &none       &none       &none       &none       &none       &none       &kp KP_NLCK &none       &none
+ &trans      &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_layer {
+            label = "one-hand";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ LT_OFN ESC  &kp L       &kp R       &kp C       &kp G       &kp F       &none       &none       &none       &none       &none       &none
+ LT_OMD BSPC &kp A       &kp O       &kp E       &kp U       &kp I       &none       &none       &none       &none       &none       &none
+ MTLS TAB    &kp S       &kp N       &kp T       &kp H       &kp D       &none       &none       &none       &none       &none       &none
+ &mo L_SY    &mo L_OMS   &mo L_OFN   &mo L_ONV   LT_OSY ENTER     LT_OAL SPACE       &trans      &trans      &trans      &trans      &mo L_SY >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_alt_layer {
+            label = "one-hand alternate";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp APOS    HLT COMMA   &kp PERIOD  &kp P       &kp Y       &none       &none       &none       &none       &none       &none
+ &trans      &kp SEMI    &kp Q       &kp J       &kp K       &kp X       &none       &none       &none       &none       &none       &none
+ &trans      &kp Z       &kp V       &kp W       &kp M       &kp B       &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_modifier_layer {
+            label = "one-hand modifiers";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &none       &sk RALT    &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &sk LGUI    &sk LALT    &sk LSHFT   &sk LCTRL   &none       &none       &none       &none       &none       &none       &none
+ &trans      &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &none       &none       &none       &none >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_symbol_layer {
+            label = "one-hand symbols";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp APOS    &kp COMMA   &kp PERIOD  &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp GRAVE   &kp MINUS   &kp EQUAL   &kp FSLH    &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp SEMI    &kp LBKT    &kp RBKT    &kp BSLH    &none       &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_nav_layer {
+            label = "one-hand navigation";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp CAPS    &kp HOME    &kp UP      &kp END     &kp PG_UP   &none       &none       &none       &none       &none       &none
+ &trans      &kp INS     &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN   &none       &none       &none       &none       &none       &none
+ &trans      &kp ENTER   &kp BSPC    &none       &kp DEL     &kp K_APP   &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_number_layer {
+            label = "one-hand numbers";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp N1      &kp N2      &kp N3      &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp N4      &kp N5      &kp N6      &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp N7      &kp N8      &kp N9      &kp N0      &none       &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_function_layer {
+            label = "one-hand functions";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp F1      &kp F2      &kp F3      &kp F4      &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp F5      &kp F6      &kp F7      &kp F8      &none       &none       &none       &none       &none       &none       &none
+ &trans      &kp F9      &kp F10     &kp F11     &kp F12     &none       &none       &none       &none       &none       &none       &none
+ &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        one_hand_mouse_layer {
+            label = "one-hand mouse";
+            bindings = <
+                                                                                                             &trans      &trans      &trans
+ &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none
+ &trans      MSC_UP      &mkp MB4    MMV_UP      &mkp MB5    &mkp MB3    &none       &none       &none       &none       &none       &none
+ &trans      MSC_DN      MMV_LT      MMV_DN      MMV_RT      &mkp MB1    &none       &none       &none       &none       &none       &none
+ &trans      &none       MSC_LT      &none       MSC_RT      &mkp MB2    &none       &none       &none       &none       &none       &none
  &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &trans >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -220,11 +357,11 @@
             label = "system";
             bindings = <
                                                                                                              &sys_reset  &bootloader &trans
- &out OUT_TOG &bt BT(0)  &bt BT(1)   &bt BT(2)   &bt BT(3)   &bt BT(4)   &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &kp RALT    &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &kp LGUI    &kp LALT    &kp LSHFT   &kp LCTRL   &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans
- &trans      &trans      &trans      &trans      &trans           &trans             &trans      &trans      &trans      &trans      &bt BT_CLR >;
+ &bt BT(0)   &bt BT(1)   &bt BT(2)   &bt BT(3)   &bt BT(4)   &none       &none       &none       &none       &none       &none       &none
+ O_BLE       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &kp RGUI
+ &bt BT_CLR  &to L_GA    &to L_OH    &to L_DV    &none       &none       &none       &none       &none       &none       &none       &kp RCTRL
+ O_USB       &none       &none       &none       &none       &none       &none       &none       &none       &none       &none       &kp RSHFT
+ &trans      &trans      &kp LGUI    &kp LALT    &trans           &trans             &trans      &kp RALT    &kp RGUI    &trans      &trans >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 

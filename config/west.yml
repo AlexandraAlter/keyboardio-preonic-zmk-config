@@ -14,7 +14,7 @@ manifest:
       revision: main
       import: app/west.yml
     - name: keyboardio-preonic-zmk-module
-      remote: alexandraalter
+      remote: keyboardio
       revision: main
   self:
     path: config
